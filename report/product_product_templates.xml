@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Use the pricelist price instead of list price -->
+    <template id="report_simple_label_price" inherit_id="product.report_simple_label">
+        <xpath expr="//strong[@t-field='product.list_price']" position="replace">
+            <strong t-field="product.with_context(pricelist=pricelist_id).price"/>
+        </xpath>
+    </template>
+
+    <template id="report_wizard_product_label_template">
+        <t t-call="report.html_container">
+            <div class="page">
+                <!-- This is safe because there can't be multiple wizards / 'docs' -->
+                <t t-set="pricelist_id" t-value="docs.pricelist_id.id"/>
+
+                <t t-foreach="docs.product_label_lines" t-as="label_line">
+                    <t t-foreach="range(0, int(label_line.number_of_labels))" t-as="counter">
+                        <t t-call="product.report_simple_label">
+                            <t t-set="product" t-value="label_line.product_id"/>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
+

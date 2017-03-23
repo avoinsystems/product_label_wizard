@@ -1,0 +1,9 @@
+<odoo>
+    <report
+            id="report_wizard_product_label"
+            string="Products Labels"
+            model="product.label.wizard"
+            report_type="qweb-pdf"
+            name="product_label_wizard.report_wizard_product_label_template"
+            file="product_label_wizard.report_wizard_product_label_template"/>
+</odoo>

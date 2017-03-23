@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- FORM: product.label.wizard -->
+        <record id="view_product_label_wizard" model="ir.ui.view">
+            <field name="name">Print Product Labels</field>
+            <field name="model">product.label.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="pricelist_id"/>
+                        <field name="product_label_lines">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="number_of_labels"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="%(product_label_wizard.report_wizard_product_label)d"
+                                string="Print Labels"
+                                type="action"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Wizard action for product.product -->
+        <act_window
+            id="action_print_product_labels_product"
+            name="Print Product Labels"
+            src_model="product.product"
+            res_model="product.label.wizard"
+            view_type="form"
+            view_mode="form"
+            key2="client_action_multi"
+            target="new"/>
+
+        <!-- Wizard action for product.template -->
+        <act_window
+            id="action_print_product_labels_product_template"
+            name="Print Product Labels"
+            src_model="product.template"
+            res_model="product.label.wizard"
+            view_type="form"
+            view_mode="form"
+            key2="client_action_multi"
+            target="new"/>
+
+    </data>
+</odoo>
