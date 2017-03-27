@@ -48,15 +48,6 @@ class ProductLabelWizard(models.TransientModel):
                                    'number_of_labels': 1}).id
                 for variant in templates.mapped('product_variant_ids')
             ]
-        elif model == 'stock.picking':
-            # Loosely coupled, this module has no dependency to stock.
-            pickings = self.env['stock.picking'].browse(active_ids)
-            res['product_label_lines'] = [
-                line_model.create({'product_id': move.product_id.id,
-                                   'number_of_labels': move.product_uom_qty}
-                                  ).id
-                for move in pickings.mapped('move_lines')
-            ]
 
         return res
     # endregion
