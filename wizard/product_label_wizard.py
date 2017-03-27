@@ -85,7 +85,7 @@ class ProductLabelWizardLine(models.TransientModel):
 
     # region Fields declaration
     wizard_id = fields.Many2one(
-        'product.label.wizard.line',
+        'product.label.wizard',
         'Wizard',
     )
 
